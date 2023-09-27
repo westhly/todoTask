@@ -46,8 +46,18 @@ function addTask(){
     loadTask()
 }
 
+
+const guardarDB = () => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+   
+}
+
 function loadTask() {
     todolist.innerHTML = "";
+    if (tasks === null){
+        tasks = [];
+    }
+   
     tasks.map((task, index) => {
         const li = document.createElement("li");
         const checkbox = document.createElement("input");
@@ -57,7 +67,9 @@ function loadTask() {
 
         checkbox.setAttribute("type", "checkbox");
         
+        
         checkbox.addEventListener("change",() => active(index));
+        
 
         if (task.completed) {
             li.classList.add("completed");
@@ -65,6 +77,7 @@ function loadTask() {
 
         todolist.appendChild(li)
         todolist.appendChild(checkbox)
+        guardarDB ();
     });
 
 }

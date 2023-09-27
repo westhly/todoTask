@@ -22,3 +22,12 @@ h1 {
 .completed {
     text-decoration: line-through;
 }
+
+#todo-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    
+
+}
