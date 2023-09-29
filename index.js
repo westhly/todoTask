@@ -43,43 +43,52 @@ function addTask(){
     tasks.push(newTask);
     input.value = "";
 
-    loadTask()
+    loadTask();
+    
 }
 
 
 const guardarDB = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-   
+    loadTask();
 }
 
 function loadTask() {
     todolist.innerHTML = "";
-    if (tasks === null){
-        tasks = [];
-    }
+
+ 
    
     tasks.map((task, index) => {
         const li = document.createElement("li");
         const checkbox = document.createElement("input");
+        const button = document.createElement("button");
+        const b = document.createElement("b");
 
-        li.textContent = task.name;
+        b.textContent = task.name;
         checkbox.checked = task.completed
+        button.textContent = "Delete";
 
         checkbox.setAttribute("type", "checkbox");
+
         
         
         checkbox.addEventListener("change",() => active(index));
-        
+        button.addEventListener("click", () => deleteTask(index));
 
         if (task.completed) {
-            li.classList.add("completed");
+            b.classList.add("completed");
         }
 
         todolist.appendChild(li)
-        todolist.appendChild(checkbox)
+        li.appendChild(b)
+        li.appendChild(checkbox)
+        li.appendChild(button)
         guardarDB ();
-    });
+       
 
+    });
+    
+    
 }
 
 function active(index) { 
@@ -87,4 +96,17 @@ function active(index) {
     loadTask();
  }
 
+ function deleteTask(index) {
+    delete (tasks[index])
+    
+    loadTask();
+
+ }
+
+
+
 addlist.addEventListener("click", addTask);
+document.addEventListener("DOMContentLoaded",loadTask);
+
+
+

@@ -29,5 +29,30 @@ h1 {
     flex-direction: column;
     justify-content: center;
     
+}
+
+li {
+    display: flex;
+    align-items: center;
+    border-radius: 1px;
+    border: 1px solid ;
+    padding: 0 2rem;
+   
+    
+}
+li button {
+    height: 1rem;
 
 }
+
+li input {
+    width: 2rem;
+}
+
+b {
+    flex-grow: 1;
+    font-family: system-ui;
+    font-size: larger;
+    
+}
+
